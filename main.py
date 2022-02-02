@@ -16,22 +16,22 @@ def makegraph(csv1, csv2):
     """
     :param csv1: enter name of vertex csv, "dots.csv" is default name:
     :param csv2: enter name of edges csv, "edges.csv" is default name:
-    :return: = (dictionary of room numbers to corresponding integers in matrix, the graph adjacency matrix (2D list))
+    :return: = (dictionary of room numbers to corresponding (x,y), dictionary of room numbers to corresponding integers
+     in matrix, the graph adjacency matrix (2D list))
     """
     dots = importcsv(csv1)
     edges = importcsv(csv2)
     roomtoint = dict()
+    roomtoxy = dict()
     i = 0
     for dot in dots:
         roomtoint[dot[0]] = i
         i += 1
-    print(roomtoint)
+        roomtoxy[dot[0]] = (dot[1], dot[2])
+    print(roomtoxy)
     print('\n')
     print(len(dots))
     gates6graph = Graph(len(dots))
     for edge in edges:
         gates6graph.add_edge(roomtoint[edge[0]], roomtoint[edge[1]], float(edge[2]))
-    return roomtoint, gates6graph
-
-
-
+    return roomtoxy, roomtoint, gates6graph
