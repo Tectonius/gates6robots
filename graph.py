@@ -32,3 +32,11 @@ class Graph(object):
                 print(f'({val[0],val[1]})', end = ":"),
             print
             print
+
+    def get_children(self, i):
+        row = self.adjMatrix[i]
+        children = []
+        for j in range(len(row)):
+            if row[j][0] == 1:
+                children.append(j)
+        return children
